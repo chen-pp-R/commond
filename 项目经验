@@ -1,1 +1,24 @@
+docker 部署项目
 
+在 /home 或 /opt 目录下运行 java -jar 时，JVM 内部 access() 系统调用失败，但 ls 明明能看到文件。
+本质是：IcedTea 的 File.canRead() 或 Path.toFile().exists() 实现中，对某些路径做了错误的规范化处理，导致路径被“误判”为不存在。
+openjdk:alpine这个版本存在问题
+
+
+真实证据：这是社区公认的 IcedTea Bug
+搜索关键词：
+
+icedtea alpine unable to access jarfile
+alpine java access enoent
+OpenJDK8 Alpine path resolution bug
+
+解决方法
+✅ 推荐替代方案（按优先级排序）：
+方案	                               优点	                   缺点
+使用 /tmp + cp	                     简单、稳定、零成本	       临时文件需管理
+换用 eclipse-temurin:8-jre-alpine	   官方 OpenJDK，无此 Bug	 需要替换私有镜像
+使用 alpine:3.19 + openjdk:8-jre	   更稳定	                 体积稍大
+⚠️ 修改 IcedTea 源码重编	彻底解决	太复杂，不推荐
+💡 强烈建议：
+如果你们能接受，把 nexus.crm.huawei.com:51443/gdtimes/openjdk:alpine 换成 eclipse-temurin:8-jre-alpine，
+这才是根治之道。
