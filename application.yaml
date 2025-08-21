@@ -1,0 +1,109 @@
+spring:
+  application:
+    name: kshpt
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false  # 新增配置，禁用检查
+      discovery:
+        enabled: false  # 禁用 Nacos 服务注册
+        register-enabled: false  # 额外确保注册功能关闭
+server:
+  port: 8080
+#swagger配置
+swagger.title: 可视化平台-接口文档
+swagger.description: 可视化平台-api文档
+swagger.termsOfServiceUrl:
+swagger.version: 1.0
+swagger.concat.auth: kshpt
+swagger.concat.url: http://www.bywin.cn
+swagger.concat.email: xxx@bywin.com
+scmp.swagger-open: true
+springdoc.consumer.title: 可视化平台-接口文档
+springdoc.consumer.version: 1.0
+springdoc.consumer.description: 可视化平台-api文档
+minio:
+  url: ${minioUrl}
+  accessKey: ${minioAccessKey}
+  secretKey: ${minioSecretKey}
+  bucketName: ${minioBucketName} #默认桶
+snowflake:
+  workerId: 1
+  startDataCenterId: ${SNOWFLAKE_START_DATA_CENTER_ID:0} #起始数据中心
+  instancesNum: ${SNOWFLAKE_INSTANCES_NUM:1} #实例数
+#数据库连接池配置
+spring.datasource.type: com.alibaba.druid.pool.DruidDataSource
+spring.datasource.druid.initial-size: 10
+spring.datasource.druid.max-active: 40
+spring.datasource.druid.min-idle: 10
+spring.datasource.druid.max-wait: 30000
+#mysql
+spring.datasource.mysql.type: com.alibaba.druid.pool.DruidDataSource
+spring.datasource.mysql.driverClassName: com.mysql.cj.jdbc.Driver
+spring.datasource.mysql.url: ${bcocDbUrl}
+spring.datasource.mysql.username: ${bcocDbUsername}
+spring.datasource.mysql.password: ${bcocDbPassword}
+spring.datasource.mysql.initialize: true
+spring.datasource.mysql.filters: stat,wall
+spring.datasource.mysql.validationQuery: SELECT 1
+spring.datasource.mysql.testWhileIdle: true
+spring.datasource.mysql.testOnBorrow: false
+spring.datasource.mysql.testOnReturn: false
+spring.datasource.mysql.initial-size: 10
+spring.datasource.mysql.max-active: 40
+spring.datasource.mysql.min-idle: 10
+spring.datasource.mysql.max-wait: 30000
+
+
+mybatis-plus.mapper-locations: classpath*:/mapping/**/*.xml
+mybatis-plus.configuration.map-underscore-to-camel-case: true
+mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#pageHelper配置
+pagehelper.helper-dialect: mysql
+pagehelper.reasonable: true
+pagehelper.support-methods-arguments: true
+pagehelper.params: count=countSqlconsumerService
+
+spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone: GMT+8
+server.servlet.session.cookie.name: KSHPT_SESSION
+
+#每5分钟将监控日志持久化到日志文件3000000
+#spring.datasource.mysql.timeBetweenLogStatsMillis=5000
+#设置multipart文件 上传
+spring.servlet.multipart.max-file-size: 150MB
+spring.servlet.multipart.max-request-size: 150MB
+
+#初始化管理员密码
+admin.password: bywin@123
+#共享租户id
+shared:
+  tenant:
+    tenantId: ${shared_tenantId:1000} #共享租户id
+
+
+local:
+  redis:
+#单机版本
+    model: singleton #这个需要填写对应的redis版本
+    singleton:
+      node: redis://${bcocRedisNodes} #redis地址
+      password: ${bcocRedisPassword} #redis密码 
+
+
+
+
+
+  minioUrl: http://minio-service:9000
+  minioAccessKey: admin
+  minioSecretKey: bywin@123
+  minioBucketName: kshpt
+  shared_tenantId: 1
