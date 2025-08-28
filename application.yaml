@@ -1,3 +1,5 @@
+# 环境数据源配置
+# 应用的不同环境不需要以此区分，平台为应用的环境自动分配数据库时会自动把环境编码添加到数据库
 spring:
   application:
     name: kshpt
@@ -33,7 +35,7 @@ minio:
   url: ${minioUrl}
   accessKey: ${minioAccessKey}
   secretKey: ${minioSecretKey}
-  bucketName: ${minioBucketName} #默认桶
+  bucketName: ${minioBucketName}  #默认桶
 snowflake:
   workerId: 1
   startDataCenterId: ${SNOWFLAKE_START_DATA_CENTER_ID:0} #起始数据中心
@@ -93,17 +95,10 @@ shared:
 local:
   redis:
 #单机版本
-    model: singleton #这个需要填写对应的redis版本
-    singleton:
-      node: redis://${bcocRedisNodes} #redis地址
-      password: ${bcocRedisPassword} #redis密码 
-
-
-
-
-
-  minioUrl: http://minio-service:9000
-  minioAccessKey: admin
-  minioSecretKey: bywin@123
-  minioBucketName: kshpt
-  shared_tenantId: 1
+    model: cluster #这个需要填写对应的redis版本
+    cluster:
+      nodes: 
+        - redis://7.220.11.122:7001
+        - redis://7.220.11.122:7002
+        - redis://7.220.11.122:7003
+      password: xxxx
