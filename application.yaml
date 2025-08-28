@@ -32,10 +32,10 @@ springdoc.consumer.title: 可视化平台-接口文档
 springdoc.consumer.version: 1.0
 springdoc.consumer.description: 可视化平台-api文档
 minio:
-  url: ${minioUrl}
-  accessKey: ${minioAccessKey}
-  secretKey: ${minioSecretKey}
-  bucketName: ${minioBucketName}  #默认桶
+  url: http://minio-service:9000
+  accessKey: admin
+  secretKey: bywin@123
+  bucketName: kshpt
 snowflake:
   workerId: 1
   startDataCenterId: ${SNOWFLAKE_START_DATA_CENTER_ID:0} #起始数据中心
@@ -89,7 +89,7 @@ admin.password: bywin@123
 #共享租户id
 shared:
   tenant:
-    tenantId: ${shared_tenantId:1000} #共享租户id
+    tenantId: ${shared_tenantId:1} #共享租户id
 
 
 local:
