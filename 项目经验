@@ -149,3 +149,51 @@ kubectl get pods,svc
 然后访问 Service 的 IP 或域名，看看是不是真能通！
 
 需要我给你写个完整的 `deployment + service` 示例吗？随时说~ 😄
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+查看kafka是否出问题流程
+第一步：看 Pod 状态 —— “病人有没有心跳？”
+kubectl get po -n 154bcoc-yj |grep kafka
+第二步：看 Kafka 是否监听端口 —— “耳朵能不能听见？”
+kubectl exec -it kafka-statefulset-1-0 -n 154bcoc-yj -- netstat -tuln | grep 9092
+tcp        0      0 10.244.8.212:9092       0.0.0.0:*               LISTEN
+第三步：检查 advertised.listeners 配置 —— “门牌号有没有写对？”
+kubectl exec -it kafka-statefulset-1-0 -n 154bcoc-yj -- cat /opt/kafka/config/server.properties | grep advertised.listeners
+advertised.listeners=PLAINTEXT://kafka-statefulset-1-0.kafka-service-1.154bcoc-yj.svc.cluster.local:9092
+第四步：检查 Service 是否正常 —— “快递能不能送到门？”
+kubectl get svc -n 154bcoc-yj |grep kafka
+kafka-service-1                ClusterIP      10.105.23.118    <none>                        9092/TCP                                        2y169d
+kafka-service-2                ClusterIP      10.101.105.237   <none>                        9092/TCP                                        2y169d
+kafka-service-3                ClusterIP      10.99.241.6      <none>                        9092/TCP                                        2y169d
+第五步：客户端能否连上？—— “快递员能敲门吗？”
+kubectl exec -it <你的客户端Pod名> -n <命名空间> -- /bin/sh
+第六步：查看 Kafka 日志中的关键错误 —— “病人到底哪里痛？”
+kubectl logs kafka-0 -n <你的命名空间> --tail=100
+第七步：检查 Kafka 集群状态（如果有多个 Broker）—— “团队有没有协作？”
+kubectl exec -it kafka-0 -n <你的命名空间> -- /bin/bash
+kafka-broker-api-versions.sh --bootstrap-server localhost:9092
+
+
+
+
