@@ -1,11 +1,11 @@
 第一幕：黎明前的曙光
 【绘图 Prompt】(用于 Midjourney/SD 定图)
-Anime style, a young man with glasses sitting in a dark bedroom at night, green light from the laptop screen reflecting on his face, looking at stock market charts, subtle smirk, feeling hopeful, cinematic atmosphere, high detail.
+Anime style, a young man with glasses sitting in a dark bedroom at night, red light from the laptop screen reflecting on his face, looking at stock market charts, subtle smirk, feeling hopeful, cinematic atmosphere, high detail.
 【视频动词】(输入给可灵)
 The man adjusts his glasses with one hand, leans his body forward towards the glowing screen, a confident and smug smile spreads across his face, his eyes blinking.
 第二幕：巅峰的错觉
 【绘图 Prompt】(用于 Midjourney/SD 定图)
-Anime style, the same young man jumping up from his chair in a bright sunlit room, holding a smartphone showing a green upward stock curve, ecstatic expression, joyful atmosphere, morning sunlight, room background.
+Anime style, the same young man jumping up from his chair in a bright sunlit room, holding a smartphone showing a red upward stock curve, ecstatic expression, joyful atmosphere, morning sunlight, room background.
 【视频动词】(输入给可灵)
 The man suddenly stands up from his desk, throwing a fist into the air to celebrate, his hair and hoodie moving with the jump, a wide excited grin on his face.
 第三幕：贪婪的收割
@@ -15,6 +15,6 @@ Anime style, extreme close-up of the man's face, intense and manic eyes, pupils 
 Extreme close-up, the man's eyes wide and shifting frantically, rapid breathing, finger tapping the phone screen at a very high speed, motion blur.
 第四幕：回到原点
 【绘图 Prompt】(用于 Midjourney/SD 定图)
-Anime style, the man slumped against a sofa on the floor, looking hollow and defeated, smartphone lying on the carpet nearby with a red stock screen, sunset shadows, melancholic mood.
+Anime style, the man slumped against a sofa on the floor, looking hollow and defeated, smartphone lying on the carpet nearby with a green stock screen, sunset shadows, melancholic mood.
 【视频动词】(输入给可灵)
 The man slowly exhales a long breath, his shoulders dropping in exhaustion, eyes staring blankly into space, the sunset light fading on his face.
